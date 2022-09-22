@@ -4,7 +4,7 @@
     {% csrf_token %}
     <div class="input-group">
         <div class="input- mb-3">
-            <input name="title" type="text" class="form-control" placeholder="Insert...TODO">
+            <input  name="title" value="{{ request.GET.title }}" type="text" class="form-control" placeholder="Insert...TODO">
             <div class="inpu-group-append">
                <button type="submit" class="btn btn-primary">Create ToDo</button>
             </div>

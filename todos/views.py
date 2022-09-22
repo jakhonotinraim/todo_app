@@ -11,7 +11,7 @@ def home(request):
 def about(request):
     return render(request, 'todos/about.html')
 def create_todo(request):
-    ToDo.objects.create(title=request.POST.get('title', False))
+    ToDo.objects.create(title=request.POST.get('title', ''))
     return redirect('home')
 def completed(request, pk):
     todo = get_object_or_404(ToDo, pk=pk)
