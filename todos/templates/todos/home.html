@@ -1,0 +1,28 @@
+{%extends 'todos/base.html'%}
+{%block content%}
+<form action="{% url 'create-todo' %}" method="POST">
+    {% csrf_token %}
+    <div class="input-group">
+        <div class="input- mb-3">
+            <input name="title" type="text" class="form-control" placeholder="Insert...TODO">
+            <div class="inpu-group-append">
+               <button type="submit" class="btn btn-primary">Create ToDo</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<ul class="list-group"> 
+    {%for todo in todos%}
+
+        <li class="list-group-item d-flex align-items-center justify-content-between"> 
+        {{todo.title}} {% if todo.is_completed %}(completed){%endif%}
+        <div>
+            <a href="{% url 'delete' todo.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            <a href="{% url 'completed' todo.pk %}" class="btn btn-sm btn-danger">Complete</a>
+        </div>
+        </li>
+    {%endfor%}
+</ul>
+        
+{%endblock%}
