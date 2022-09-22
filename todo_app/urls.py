@@ -14,8 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from todos.views import delete, home, about, create_todo, completed, delete
+from django.urls import path, include
+from todos.views import delete, home, about, create_todo, completed, delete, todo_api, todo_detail 
+from rest_framework.urlpatterns import format_suffix_patterns
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', home, name='home'),
@@ -23,5 +25,10 @@ urlpatterns = [
     path('create_todo/', create_todo, name='create-todo'),
     path('completed/<int:pk>/', completed, name='completed'),
     path('delete/<int:pk>/', delete, name='delete'),
-
+    path('todo_rest/', todo_api),
+    path('todo_rest/<int:id>', todo_detail),
+    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+
